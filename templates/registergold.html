@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro de usuarios</title>
+  <link rel="stylesheet" type="text/css" href="static/register.css">
+  <style>
+    #success-message {
+      display: none;
+      width: 300px;
+      height: 200px;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      margin: 20px auto;
+    }
+    #countdown {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <form id="registration-form">
+    <input type="text" id="email" name="email" placeholder="Email" required>
+    <input type="text" id="name" name="name" placeholder="Nombre" required>
+    <input type="text" id="surname" name="surname" placeholder="Apellido" required>
+    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar contraseña" required>
+    <button type="submit" id="register-button">Registrarme</button>
+    <div id="message"></div>
+  </form>
+  
+  <div id="success-message">
+    <h2>Cuenta creada con éxito</h2>
+    <p>Serás redirigido para concluir el pago.</p>
+    <div id="countdown">5</div>
+  </div>
+
+  <script>
+    const registerForm = document.getElementById("registration-form");
+    registerForm.addEventListener("submit", enviarRegistro);
+
+    function enviarRegistro(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const nombre = document.getElementById("name").value;
+      const apellido = document.getElementById("surname").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const messageDiv = document.getElementById("message");
+      const successDiv = document.getElementById("success-message");
+      const countdownDiv = document.getElementById("countdown");
+
+      if (password !== confirmPassword) {
+        messageDiv.textContent = "Las contraseñas no coinciden.";
+        return;
+      }
+
+      fetch("/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          nombre: nombre,
+          apellido: apellido
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Error al registrar usuario.");
+        }
+      })
+      .then(data => {
+        console.log(data);
+        if (data.success) {
+          // Ocultar el formulario y mostrar el mensaje de éxito
+          registerForm.style.display = "none";
+          successDiv.style.display = "block";
+          // Iniciar el contador descendente
+          let countdown = 5;
+          countdownDiv.textContent = countdown;
+          const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownDiv.textContent = countdown;
+            if (countdown === 0) {
+              clearInterval(countdownInterval);
+              window.location.href = "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c93808488907a38018893248fb30196";
+            }
+          }, 1000);
+        } else {
+          messageDiv.textContent = "Error: " + data.message;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        messageDiv.textContent = "Hubo un error en el registro.";
+      });
+    }
+  </script>
+</body>
+</html>

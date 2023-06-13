@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Peticiones</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="static/mis_pagos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <div class="logo-container">
+        <img src="static/images/favicon.png" alt="Logo de la compañía" class="logo">
+        <a href="#" class="company-name">Wabo Technologies</a>
+      </div>
+      <div class="notification-container">
+        <a href="/notificaciones" class="notification-toggle">
+          <i class="fas fa-bell" style="color: white;"></i>
+          <span class="badge"></span>
+        </a>
+        <div class="notification-content">
+          <ul id="notification-list"></ul>
+        </div>
+      </div>
+      <div class="dropdown-container">
+        <a href="#" class="dropdown-toggle">Opciones <i class="fas fa-chevron-down" id="dropdown-icon"></i></a>
+        <div class="dropdown-content">
+          <a href="/welcome">Inicio</a>
+          <a href="/peticiones">Mis peticiones</a>
+          <a href="/notificaciones">Notificaciones</a>
+          <a href="/mis_pagos">Mis pagos</a>
+          <a href="/mis_datos">Mis datos</a>
+          <a href="https://wa.me/+5491151797471">Contactanos</a>
+          <a href="/">Cerrar Sesión</a>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+  </nav>
+    <div class="container">
+        <h1>Mis Pagos</h1>
+        <p>Aquí puedes ver tus pagos realizados y su estado.</p>
+        <div class="btn-container">
+            <button onclick="location.href='/nuevo_pago'">Generar Nuevo Pago</button>
+        </div>
+        <table id="pagosTable">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Fecha</th>
+              <th>Monto</th>
+              <th>Motivo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for pago in pagos %}
+            <tr>
+              <td>{{ pago['id'] }}</td>
+              <td>{{ pago['fecha'] }}</td>
+              <td>{{ pago['monto'] }}</td>
+              <td>{{ pago['motivo'] }}</td>
+              <td>{{ pago['estado'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    <div class="instructions">
+      <p>Por favor, realiza el pago correspondiente al monto de tu plan actual.</p>
+      <p> El pago se reflejará en tu cuenta aproximadamente 2 horas después de que hayamos recibido los fondos.</p>
+      <p>Si tienes alguna duda o necesitas asistencia, no dudes en contactarnos.</p>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        dropdownToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            dropdownContent.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle i')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    </script>
+    
+</body>
+</html>

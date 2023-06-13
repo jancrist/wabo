@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bienvenido a tu panel de administración</title>
+  <link rel="stylesheet" type="text/css" href="static/welcome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <div class="logo-container">
+        <img src="static/images/favicon.png" alt="Logo de la compañía" class="logo">
+        <a href="#" class="company-name">Wabo Technologies</a>
+      </div>
+      <div class="notification-container">
+        <a href="/notificaciones" class="notification-toggle">
+          <i class="fas fa-bell" style="color: white;"></i>
+          <span class="badge"></span>
+        </a>
+        <div class="notification-content">
+          <ul id="notification-list"></ul>
+        </div>
+      </div>
+      <div class="dropdown-container">
+        <a href="#" class="dropdown-toggle">Opciones <i class="fas fa-chevron-down" id="dropdown-icon"></i></a>
+        <div class="dropdown-content">
+          <a href="/welcome">Inicio</a>
+          <a href="/peticiones">Mis peticiones</a>
+          <a href="/notificaciones">Notificaciones</a>
+          <a href="/mis_pagos">Mis pagos</a>
+          <a href="/mis_datos">Mis datos</a>
+          <a href="https://wa.me/+5491151797471">Contactanos</a>
+          <a href="/">Cerrar Sesión</a>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="image-container">
+      <img src="static/images/welcome_bot.jpg" alt="Imagen elegida por ti">
+    </div>
+    <div class="welcome-container">
+      <h1 class="welcome-title">!Te damos la bienvenida! {{username}} <span id="username"></span></h1>
+      <p class="welcome-message">Este es tu panel de administración. ¿En qué te podemos ayudar hoy?</p>
+      <div class="button-container">
+        <a class="button no-underline" href="/peticiones">Mis peticiones</a>
+
+
+        
+        <a class="button button-contact"  href="https://wa.me/+5491151797471">Contáctanos</a>
+      </div>
+    </div>
+    
+  </div>
+
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const dropdownToggle = document.querySelector('.dropdown-toggle');
+      const dropdownContent = document.querySelector('.dropdown-content');
+      const dropdownIcon = document.querySelector('.dropdown-toggle i');
+
+      dropdownToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdownContent.classList.toggle('show');
+      });
+
+      dropdownIcon.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdownContent.classList.toggle('show');
+      });
+
+      window.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle i')) {
+          dropdownContent.classList.remove('show');
+        }
+      });
+    });
+    const dropdownIcon = document.querySelector('#dropdown-icon');
+
+dropdownIcon.addEventListener('click', function(event) {
+  event.preventDefault();
+  dropdownContent.classList.toggle('show');
+});
+  </script>
+  
+</body>
+</html>

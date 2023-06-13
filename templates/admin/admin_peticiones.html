@@ -1,0 +1,54 @@
+. <!DOCTYPE html>
+<html>
+<head>
+    <title>Administración de Peticiones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="static/peticiones.css">
+</head>
+<body>
+    <h1>Administración de Peticiones</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo de Petición</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>User ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for peticion in peticiones %}
+            <tr>
+                <td>{{ peticion[0] }}</td>
+                <td>{{ peticion[1] }}</td>
+                <td>{{ peticion[2] }}</td>
+                <td>{{ peticion[3] }}</td>
+                <td>{{ peticion[4] }}</td>
+                <td>{{ peticion[5] }}</td>
+                <td>{{ peticion[6] }}</td>
+                <td>
+                    <form action="/cambiar_estado_peticion" method="POST">
+                        <input type="hidden" name="peticion_id" value="{{ peticion[0] }}">
+                        <input type="hidden" name="user_id" value="{{ peticion[6] }}">
+                        <select name="estado">
+                            <option value="En curso">En curso</option>
+                            <option value="Completada">Completada</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <!-- Agrega más opciones de estado según tus necesidades -->
+                        </select>
+                        <button type="submit">Cambiar Estado</button>
+                    </form>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

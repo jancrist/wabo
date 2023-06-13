@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Peticiones</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="static/peticiones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo-container">
+            <img src="static/images/favicon.png" alt="Logo de la compañía" class="logo">
+            <a href="#" class="company-name">Wabo Technologies</a>
+          </div>
+          <div class="notification-container">
+            <a href="/notificaciones" class="notification-toggle">
+              <i class="fas fa-bell" style="color: white;"></i>
+              <span class="badge"></span>
+            </a>
+            <div class="notification-content">
+              <ul id="notification-list"></ul>
+            </div>
+          </div>
+          <div class="dropdown-container">
+            <a href="#" class="dropdown-toggle">Opciones <i class="fas fa-chevron-down" id="dropdown-icon"></i></a>
+            <div class="dropdown-content">
+              <a href="/welcome">Inicio</a>
+              <a href="/peticiones">Mis peticiones</a>
+              <a href="/notificaciones">Notificaciones</a>
+              <a href="/mis_pagos">Mis pagos</a>
+              <a href="/mis_datos">Mis datos</a>
+              <a href="https://wa.me/+5491151797471">Contactanos</a>
+              <a href="/">Cerrar Sesión</a>
+            </div>
+          </div>
+          
+        </div>
+        </div>
+      </nav>
+    <div class="container">
+        <h1>Mis Peticiones</h1>
+        <p>Desde esta sección podemos mejorar tu bot, agregarle funciones, mejorar funciones, mejorar respuestas y también podemos modificar datos de tu negocio o sus respuestas.</p>
+        <div class="btn-container">
+            <button onclick="location.href='/nueva_peticion'">Generar Nueva Petición</button>
+        </div>
+        <table id="datatable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Tipo de petición</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+     <div class="instructions">
+        <p>Por favor, explica detalladamente los agregados que deseas y cualquier otra información relevante.</p>
+        <p>Ten en cuenta que la modificación puede llevar tiempo y serás notificado cuando los cambios sean aplicados.</p>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        dropdownToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            dropdownContent.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle i')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    </script>
+    
+</body>
+</html>

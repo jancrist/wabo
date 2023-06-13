@@ -1,0 +1,287 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav {
+    background-color: #333;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 30px;
+    
+    margin-right: 10px;
+  }
+  
+  .company-name {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+  
+  
+  
+  
+  /* Arriba navbar, Abajo todo lo demas*/
+  
+  /* Estilos generales */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  /* Estilos de la barra de navegación */
+  nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .company-name {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    padding: 10px;
+    display: none;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 5px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .show {
+    display: block;
+  }
+  
+  /*arriva navbar*/
+  
+  .container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sub-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .alias {
+    margin-top: 10px;
+  }
+  
+    
+    form {
+      margin-top: 20px;
+    }
+    
+    label {
+      font-size: 16px;
+      color: #333;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    br {
+      line-height: 1.5;
+    }
+    
+  
+  
+    .instructions {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .instructions p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    .instructions {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .instructions p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+      
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 690px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
+@media (max-width: 690px) {
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+.notification-toggle i {
+  font-size: 24px;
+  color: white;
+}
+
+.notification-toggle {
+  position: relative;
+  margin-left: 1100px;
+  margin-right: -20px;
+}
+
+.notification-content {
+  position: absolute;
+  top: 100%;
+  right: -180px;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: none;
+  z-index: 9999;
+}
+
+.notification-toggle:hover .notification-content {
+  display: block;
+}
+

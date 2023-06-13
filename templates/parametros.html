@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Parámetros</title>
+	<link rel="stylesheet" type="text/css" href="static/parametros.css">
+</head>
+<body>
+	<h1>Parámetros</h1>
+	<div class="container">
+		<div class="current-value">
+			<label for="current-value">Estado Actual:</label>
+			<span id="updated-label"></span>
+			<button id="reload-value">Reload</button>
+		</div>
+		<div class="get-value">
+			<label for="get-value">Valor Actual:</label>
+      <span id="current-value"></span>
+			<span id="get-value"></span>
+		</div>
+		<hr>
+		<div>
+			<label for="parametro">Ingrese el valor del puerto:</label>
+			<input type="text" id="paqq" placeholder="Tunnel Ngrok">
+			<button id="update-value">Actualizar</button>
+			
+		</div>
+	</div>
+	<script>
+    //esto
+    
+		function actualizarHoja() {
+			const url = "https://api.sheety.co/0fe73574a7e60f64ef34d8deb922274f/parametros/hoja1/2";
+			const puerto = document.getElementById("paqq").value;
+			const data = { "hoja1": { "puerto": puerto } };
+      const inputValue = document.getElementById("paqq");
+      inputValue.value = "";
+			fetch(url, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data)
+			})
+			.then(response => {
+				console.log('Código de estado:', response.status);
+				console.log('Respuesta:', response.json());
+			})
+			.catch(error => console.error('Error:', error));
+		}
+		
+		function getCurrentValue() {
+			let url = 'https://api.sheety.co/0fe73574a7e60f64ef34d8deb922274f/parametros/hoja1';
+			fetch(url)
+				.then(response => response.json())
+				.then(data => {
+					const currentValueLabel = document.getElementById("current-value");
+					currentValueLabel.innerText = data.hoja1[0].puerto;
+					const updatedLabel = document.getElementById("updated-label");
+					updatedLabel.innerText = "Actualizado";
+					updatedLabel.style.color = "green";
+				})
+				.catch(error => {
+					console.error(error);
+					const updatedLabel = document.getElementById("updated-label");
+					updatedLabel.innerText = "Error al obtener el valor";
+					updatedLabel.style.color = "red";
+				});
+		}
+
+		getCurrentValue();
+  
+		// Agrega un evento click al botón de actualizar para obtener el valor actual
+		document.getElementById("reload-value").addEventListener("click", () => {
+			getCurrentValue();
+      
+		});
+
+		document.getElementById("update-value").addEventListener("click", () => {
+			actualizarHoja();
+      
+		});
+	</script>
+</body>
+</html>

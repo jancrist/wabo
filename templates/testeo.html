@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notificaciones</title>
+</head>
+<body>
+    <h1>Notificaciones</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Título</th>
+                <th>Fecha</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for notificacion in notificaciones %}
+            <tr>
+                <td>{{ notificacion[0] }}</td>
+                <td>{{ notificacion[1] }}</td>
+                <td>{{ notificacion[2] }}</td>
+                <td>{{ notificacion[3] }}</td>
+                <td>{{ notificacion[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

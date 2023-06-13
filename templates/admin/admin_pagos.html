@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administración de Pagos</title>
+</head>
+<body>
+    <h1>Administración de Pagos</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID de Usuario</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pago in pagos %}
+            <tr>
+                <td>{{ pago[0] }}</td>
+                <td>{{ pago[1] }}</td>
+                <td>{{ pago[2] }}</td>
+                <td>{{ pago[3] }}</td>
+                <td>{{ pago[4] }}</td>
+                <td>{{ pago[5] }}</td>
+                <td>
+                    <form action="/cambiar_estado_pago" method="POST">
+                        <input type="hidden" name="pago_id" value="{{ pago[0] }}">
+                        <select name="estado">
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Completado">Completado</option>
+                            <option value="Cancelado">Cancelado</option>
+                            <!-- Agrega más opciones de estado según tus necesidades -->
+                        </select>
+                        <button type="submit">Cambiar Estado</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Generar Pago</h2>
+    <form action="/generar_pago" method="POST">
+        <label for="user_id">ID de Usuario:</label>
+        <input type="text" name="user_id" required>
+        <br>
+        <label for="fecha">Fecha:</label>
+        <input type="text" name="fecha" required>
+        <br>
+        <label for="monto">Monto:</label>
+        <input type="text" name="monto" required>
+        <br>
+        <label for="motivo">Motivo:</label>
+        <input type="text" name="motivo" required>
+        <br>
+        <input type="submit" value="Generar Pago">
+    </form>
+</body>
+</html>

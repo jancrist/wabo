@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Chat</h1>
+    <div id="messages"></div>
+    <input id="input" type="text" placeholder="Escribe un mensaje" autofocus>
+    <button id="send">Enviar</button>
+
+    <script>
+        var socket = io();
+
+        var messages = document.getElementById('messages');
+        var input = document.getElementById('input');
+        var sendButton = document.getElementById('send');
+
+        sendButton.addEventListener('click', function() {
+            sendMessage();
+        });
+
+        input.addEventListener('keyup', function(event) {
+            if (event.keyCode === 13) {  // 13 is the key code for Enter
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            var message = input.value.trim();
+            if (message !== '') {
+                socket.emit('message', { 'message': message });
+                input.value = '';
+            }
+        }
+
+        socket.on('message', function(data) {
+            var message = document.createElement('p');
+            message.innerText = data['message'];
+            messages.appendChild(message);
+        });
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+    </script>
+    
+</body>
+</html>

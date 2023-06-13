@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notificaciones</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="static/notificaciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <div class="logo-container">
+            <img src="static/images/favicon.png" alt="Logo de la compañía" class="logo">
+            <a href="#" class="company-name">Wabo Technologies</a>
+          </div>
+          <div class="notification-container">
+            <a href="/notificaciones" class="notification-toggle">
+              <i class="fas fa-bell" style="color: white;"></i>
+              <span class="badge"></span>
+            </a>
+            <div class="notification-content">
+              <ul id="notification-list"></ul>
+            </div>
+          </div>
+          <div class="dropdown-container">
+            <a href="#" class="dropdown-toggle">Opciones <i class="fas fa-chevron-down" id="dropdown-icon"></i></a>
+            <div class="dropdown-content">
+              <a href="/welcome">Inicio</a>
+              <a href="/peticiones">Mis peticiones</a>
+              <a href="/notificaciones">Notificaciones</a>
+              <a href="/mis_pagos">Mis pagos</a>
+              <a href="/mis_datos">Mis datos</a>
+              <a href="https://wa.me/+5491151797471">Contactanos</a>
+              <a href="/">Cerrar Sesión</a>
+            </div>
+          </div>
+          
+        </div>
+        </div>
+      </nav>
+    <div class="container">
+        <h1>Notificaciones</h1>
+        <p>Desde aquí puedes enterarte de las últimas novedades.</p>
+        
+        <table id="datatable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Título</th>
+                    <th>Mensaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notificacion in notificaciones %}
+                <tr>
+                    <td>{{ notificacion['fecha'] }}</td>
+                    <td>{{ notificacion['hora'] }}</td>
+                    <td>{{ notificacion['titulo'] }}</td>
+                    <td>{{ notificacion['mensaje'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="instructions">
+        <p>Aquí te llegarán todas las modificaciones de tu cuenta y las actualizaciones sobre tu servicio, pagos y peticiones.</p>
+        <p>Recuerda revisar tus notificaciones regularmente para mantenerte informado.</p>
+        <p>Si tienes alguna duda o necesitas asistencia, no dudes en contactarnos.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "order": [[1, "desc"]]
+            });
+        });
+
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        dropdownToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            dropdownContent.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle i')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wabo Technologies - Chatbots de inteligencia artificial</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Variables de colores */
+    /* Fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+    :root {
+      --primary-color: #3e8eff;
+      --secondary-color: #777777;
+      --light-bg-color: #f8f9fa;
+      --dark-bg-color: #212121;
+    }
+
+    body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--secondary-color);
+}
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 700px;
+      margin: 50px 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    .navbar {
+      background-color: #0F2027;
+      padding: 10px;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #fff;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-rounded {
+      border-radius: 20px;
+    }
+
+    footer {
+      background-color: #f9f9f9;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .whatsapp img:hover {
+      transform: scale(1.4);
+    }
+
+    .whatsapp img {
+      width: 100px;
+      height: 100px;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .whatsapp img[src*="whatsapp.png"] {
+      background: transparent;
+      border: none;
+    }
+    
+    .card .btn-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+
+
+
+
+    /* Agrega estos estilos al bloque <style> existente o añade un nuevo bloque <style> */
+
+.pack-title {
+  color: #007bff;
+  font-size: 32px;
+}
+
+.pack-divider {
+  border-top: 2px solid #ccc;
+}
+
+.feature-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.feature-items li {
+  margin-bottom: 10px;
+}
+
+.btn-primary.pack-btn {
+  background-color: #007bff;
+  color: #fff;
+  width: 120px;
+  border-radius: 30px;
+  padding: 20px 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.btn-primary.pack-btn:hover {
+  background-color: #0056b3;
+}
+.btn-jan{
+  margin-top: 30px;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="static/images/favicon.png" width="58" height="50" class="d-inline-block align-top" alt="Logo">
+        
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/#features">Características</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#pricing1">Precios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#about">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#contact">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary mr-2" href="/login">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-success" href="/#pricing1">Hazte Cliente</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="pack1" class="pack-section">
+    <div class="card-container">
+      <div class="card">
+        <h2 class="pack-title">Gold</h2>
+        <hr class="pack-divider">
+        <div class="feature-list">
+          
+          <ul>
+            <li>Respuestas automáticas avanzadas y personalizadas para satisfacer las necesidades de tu negocio.</li>
+            <li>Opciones de contacto que permiten una comunicación directa con operadores especializados.</li>
+            <li>Entrega de información en tiempo real sobre el estado de pedidos, productos y servicios.</li>
+            <li>Integración perfecta con tus sistemas existentes para una gestión eficiente y sin inconvenientes.</li>
+            <li>Gestión y resolución de consultas avanzadas de manera eficaz y precisa.</li>
+            <li>Integración con sistemas para un seguimiento completo y detallado de las interacciones con los clientes.</li>
+            <li>Capacidad para aprovechar tus bases de datos o archivos de Excel y responder en base a la información almacenada.</li>
+            <li>Solicitudes API para integraciones fluidas y seguras con tus sistemas existentes.</li>
+          </ul>
+        </div>
+        <div class="btn-jan">
+          <a class="btn btn-rounded btn-primary" href="/registergold">Contratar</a>
+          <a class="btn btn-rounded btn-primary" href="/">Probar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>&copy; 2023 Wabo Technologies.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp">
+    <a href="https://wa.me/+5491151797471" target="_blank"><img src="static/images/wplogo.png" alt="WhatsApp"></a>
+  </div>
+
+</body>
+
+</html>
